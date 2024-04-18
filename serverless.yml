@@ -1,0 +1,39 @@
+
+service: cart-api-service
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-west-1
+  stage: dev
+
+  environment:
+    PG_HOST: database-1.cbmyw6e4ghiu.eu-west-1.rds.amazonaws.com
+    PG_PORT: 5432
+    PG_DATABASE: postgres
+    PG_USERNAME: postgres
+    PG_PASSWORD: jpHqdEtazGMeX2kdph1I
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: GET
+          path: api/profile/cart
+          cors: true
+      - http:
+          method: PUT
+          path: api/profile/cart
+          cors: true
+      - http:
+          method: DELETE
+          path: api/profile/cart
+          cors: true
+      - http:
+          method: POST
+          path: api/profile/cart/checkout
+          cors: true
