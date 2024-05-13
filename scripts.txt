@@ -1,0 +1,23 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE carts (
+	id uuid DEFAULT uuid_generate_v4(),
+  user_id uuid not null,
+  created_at date not null,
+  updated_at date not null,
+  status VARCHAR not null,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE cart_items (
+  cart_id uuid,
+  product_id uuid,
+  count integer,
+  foreign key ("cart_id") references "carts" ("id")
+);
+
+insert into carts (user_id, created_at, updated_at, status) values
+	('b30c9be8-b4a6-492a-b4ef-b039577d00cb', CURRENT_DATE, CURRENT_DATE,  'OPEN');
+
+insert into cart_items (cart_id, product_id, count) values
+	('6f16822d-83ed-4d07-8068-10d96712de71', 'c2f45097-0ffa-4b50-84f4-7bf9ad98e996', 2);

@@ -8,7 +8,7 @@ import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
-    AuthModule,
+    // AuthModule,
     CartModule,
     OrderModule,
   ],
